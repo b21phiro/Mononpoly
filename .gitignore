@@ -33,3 +33,8 @@
 
 # IDE
 *.vs
+
+# IDK, but i do not think its important for the implementation details :D (making completely unfounded guesses, what's the worst that could happen)
+Debug
+Mononpoly
+x64
