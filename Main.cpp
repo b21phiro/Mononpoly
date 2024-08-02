@@ -1,7 +1,3 @@
-#include "Property.hpp"
-#include "ActionLand.hpp"
-#include <vector>
-#include <memory>
 #include <iostream>
 
 int main() {
