@@ -1,9 +1,11 @@
 #include <iostream>
+#include "Game.h"
 
 int main()
 {
 
-    std::cout << "Mononpoly is being born..." << std::endl;
+    Game game;
+    game.run();
 
     return 0;
 
