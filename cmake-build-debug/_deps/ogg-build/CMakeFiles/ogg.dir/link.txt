@@ -1,0 +1,2 @@
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\ar.exe qc ..\sfml-build\lib\liboggd.a CMakeFiles/ogg.dir/src/bitwise.c.obj CMakeFiles/ogg.dir/src/framing.c.obj
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\ranlib.exe ..\sfml-build\lib\liboggd.a
