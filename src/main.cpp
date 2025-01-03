@@ -8,11 +8,11 @@ int main()
     sf::RenderWindow window(sf::VideoMode({800, 600}), "SFML window");
 
     // Load a sprite to display
-    const sf::Texture texture("C:/Users/Phili/CLionProjects/Mononpoly/src/resources/textures/alma-liten-1-1.jpg");
+    const sf::Texture texture("../../src/resources/textures/alma-liten-1-1.jpg");
     sf::Sprite sprite(texture);
 
     // Create a graphical text to display
-    const sf::Font font("C:/Users/Phili/CLionProjects/Mononpoly/src/resources/fonts/Dosis-Regular.ttf");
+    const sf::Font font("../../src/resources/fonts/Dosis-Regular.ttf");
     sf::Text text(font, "Hello SFML", 50);
 
     // Start the game loop
