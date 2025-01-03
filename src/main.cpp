@@ -5,7 +5,7 @@
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "SFML window");
+    sf::RenderWindow window(sf::VideoMode({800, 600}), WINDOW_TITLE);
 
     // Load a sprite to display
     const sf::Texture texture("../../src/resources/textures/alma-liten-1-1.jpg");
