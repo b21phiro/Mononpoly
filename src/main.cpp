@@ -1,19 +1,36 @@
 #include <SFML/Graphics.hpp>
 
 #define WINDOW_TITLE "Mononpoly"
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
+#define BOARD_WIDTH 300
+
+sf::Vector2f centerOfScreen()
+{
+    return {WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f};
+}
+
+sf::CircleShape createBoardShape()
+{
+    sf::CircleShape board(BOARD_WIDTH, 4);
+    const sf::Vector2f center(board.getRadius(), board.getRadius());
+    board.setOrigin(center);
+    board.setPosition(centerOfScreen());
+    return board;
+}
 
 int main()
 {
-    // Create the main window
-    sf::RenderWindow window(sf::VideoMode({800, 600}), WINDOW_TITLE);
 
-    // Load a sprite to display
-    const sf::Texture texture("../../src/resources/textures/alma-liten-1-1.jpg");
-    sf::Sprite sprite(texture);
+    // Zoom level.
+    sf::Vector2f zoom(1.f, 1.f);
 
-    // Create a graphical text to display
-    const sf::Font font("../../src/resources/fonts/Dosis-Regular.ttf");
-    sf::Text text(font, "Hello SFML", 50);
+    // Create the main window.
+    sf::RenderWindow window(sf::VideoMode({WINDOW_WIDTH, WINDOW_HEIGHT}), WINDOW_TITLE);
+
+    // Create the main board.
+    sf::CircleShape board = createBoardShape();
+    board.setScale(sf::Vector2f(1.5f, 1.5f));
 
     // Start the game loop
     while (window.isOpen())
@@ -29,11 +46,8 @@ int main()
         // Clear screen
         window.clear();
 
-        // Draw the sprite
-        window.draw(sprite);
-
-        // Draw the string
-        window.draw(text);
+        // Draw the board
+        window.draw(board);
 
         // Update the window
         window.display();
