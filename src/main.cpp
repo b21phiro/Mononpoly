@@ -24,9 +24,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({WINDOW_WIDTH, WINDOW_HEIGHT}), WINDOW_TITLE);
 
     // The main view of the game.
-    sf::View view;
-    view.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    view.setCenter(sf::Vector2f(centerOfScreen()));
+    sf::View view = window.getDefaultView();
 
     // Create the main board.
     sf::CircleShape board = createBoardShape();
@@ -44,6 +42,12 @@ int main() {
                 } else if (mouseWheelScrolled->delta == -1) {
                     view.zoom(1.1f);
                 }
+            } else if (const auto* resized = event->getIf<sf::Event::Resized>()) {
+                view.setSize({
+                    static_cast<float>(resized->size.x),
+                    static_cast<float>(resized->size.y),
+                });
+                window.setView(view);
             }
         }
 
