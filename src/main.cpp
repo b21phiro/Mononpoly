@@ -1,3 +1,4 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 #define WINDOW_TITLE "Mononpoly"
@@ -5,13 +6,11 @@
 #define WINDOW_HEIGHT 600
 #define BOARD_WIDTH 300
 
-sf::Vector2f centerOfScreen()
-{
+sf::Vector2f centerOfScreen() {
     return {WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f};
 }
 
-sf::CircleShape createBoardShape()
-{
+sf::CircleShape createBoardShape() {
     sf::CircleShape board(BOARD_WIDTH, 4);
     const sf::Vector2f center(board.getRadius(), board.getRadius());
     board.setOrigin(center);
@@ -19,29 +18,40 @@ sf::CircleShape createBoardShape()
     return board;
 }
 
-int main()
-{
-
-    // Zoom level.
-    sf::Vector2f zoom(1.f, 1.f);
+int main() {
 
     // Create the main window.
     sf::RenderWindow window(sf::VideoMode({WINDOW_WIDTH, WINDOW_HEIGHT}), WINDOW_TITLE);
 
+    // The main view of the game.
+    sf::View view;
+    view.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    view.setCenter(sf::Vector2f(centerOfScreen()));
+
     // Create the main board.
     sf::CircleShape board = createBoardShape();
-    board.setScale(sf::Vector2f(1.5f, 1.5f));
 
     // Start the game loop
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         // Process events
-        while (const std::optional event = window.pollEvent())
-        {
+        while (const std::optional event = window.pollEvent()) {
             // Close window: exit
-            if (event->is<sf::Event::Closed>())
+            if (event->is<sf::Event::Closed>()) {
                 window.close();
+            } else if (const auto* mouseWheelScrolled = event->getIf<sf::Event::MouseWheelScrolled>()) {
+                if (mouseWheelScrolled->delta == 1) {
+                    view.zoom(0.9f);
+                } else if (mouseWheelScrolled->delta == -1) {
+                    view.zoom(1.1f);
+                }
+            }
         }
+
+        // Clear the window.
+        window.clear();
+
+        // Our current view.
+        window.setView(view);
 
         // Clear screen
         window.clear();
