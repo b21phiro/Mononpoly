@@ -1,5 +1,7 @@
-//
-// Created by Phili on 2025-07-07.
-//
+#include <iostream>
 
-#include "main.h"
+int main()
+{
+    std::cout << "Hello World!\n";
+    return 0;
+}
